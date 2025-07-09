@@ -127,17 +127,17 @@ function updateLogHistory() {
         displayAmount = Math.round(displayAmount * 30);
       }
 
-      const display = `${date} - ${time}: ${displayAmount} ${selectedUnit}`;
+      const display = `${date} - <span class="logs-blue">${time}: <em>${displayAmount}</em> ${selectedUnit}</span>`;
       logs[index].display = display; // for consistency
 
       return `
       <div id="log-${index}" class="milk-log" style="margin-bottom: 6px;">
-        • <span id="log-display-${index}">${display}</span>
+        <span id="log-display-${index}">${display}</span>
         <div id="edit-form-${index}" style="display:none; margin-top: 4px;">
-          <input type="number" id="edit-amount-${index}" value="${
+          <input type="number" class="edit-input edit-input-amount" id="edit-amount-${index}" value="${
         log.amount
       }" style="width:60px; padding:2px; font-size: 13px;">
-          <select id="edit-unit-${index}" style="padding:2px; font-size: 13px;">
+          <select class="edit-input edit-input-unit" id="edit-unit-${index}" style="padding:2px; font-size: 13px;">
             <option value="ml" ${
               log.unit === 'ml' ? 'selected' : ''
             }>ml</option>
@@ -145,11 +145,14 @@ function updateLogHistory() {
               log.unit === 'oz' ? 'selected' : ''
             }>oz</option>
           </select>
-          <button onclick="saveEdit(${index})" style="font-size: 12px; margin-left: 4px;">💾 Save</button>
-          <button onclick="cancelEdit(${index})" style="font-size: 12px;">❌ Cancel</button>
+          <button class="logs-btn" onclick="saveEdit(${index})" style="font-size: 12px; margin-left: 4px;"><img class="logs-icon logs-icon-save" src="imgs/save.png" alt="Save Button"></button>
+          <button class="logs-btn" onclick="cancelEdit(${index})" style="font-size: 12px;"><img class="logs-icon logs-icon-cancel" src="imgs/cancel.png" alt="Cancel Button"></button>
         </div>
-        <button onclick="startEdit(${index})" style="margin-left: 8px; font-size: 12px;">✏️</button>
-        <button onclick="openDeleteModal(${index})" style="margin-left: 4px; font-size: 12px; color: red;">🗑️</button>
+        <div class="logs-btn-box">
+          <button class="logs-btn" onclick="startEdit(${index})" style="margin-left: 8px; font-size: 12px;"><img class="logs-icon logs-icon-edit" src="imgs/edit.png" alt="Edit Button">
+          </button>
+          <button class="logs-btn" onclick="openDeleteModal(${index})" style="margin-left: 4px; font-size: 12px; color: red;"><img class="logs-icon logs-icon-delete" src="imgs/delete.png" alt="Delete Button"></button>
+        </div>
       </div>
     `;
     })
@@ -158,7 +161,7 @@ function updateLogHistory() {
   // Add the Delete All button at the end
   logHistory.innerHTML += `
     <div style="text-align: center; margin-top: 12px;">
-      <button onclick="openDeleteAllModal()" style="font-size: 13px; background: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
+      <button class="logs-delete" onclick="openDeleteAllModal()" style="font-size: 13px; background: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
         🗑️ Delete All Logs
       </button>
     </div>

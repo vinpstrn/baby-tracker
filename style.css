@@ -180,9 +180,10 @@ main .main-heading {
 
 #unitSelect {
   appearance: none;
-  background-image: url('imgs/arrow-down.png');
+  background-image: url(imgs/arrow-down.png);
   background-repeat: no-repeat;
   background-position: right 1rem center;
+  background-size: 1rem;
   padding: 1rem 2.5rem 1rem 1rem;
 }
 
@@ -232,11 +233,50 @@ main .main-heading {
 }
 
 .logs {
+  width: 100%;
   padding-top: 2rem;
 }
 
 .milk-log {
   font-family: inherit;
-  font-size: 1.4rem;
-  border-bottom: 1px solid black;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #ededed;
+  color: #333333;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.7rem .25rem 1.7rem;
+}
+
+.view-logs-history {
+  width: 100%;
+  padding-top: 3rem;
+}
+
+.logs-blue {
+  color: #228ade;
+}
+
+.logs-btn {
+  cursor: pointer;
+  background: none;
+  outline: none;
+  border: none;
+    width: 1.4rem;
+  height: 1.4rem;
+}
+
+.logs-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.edit-input {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  border-bottom: .2rem solid #51aaf2;
+  background: none;
+  outline: none;
 }
