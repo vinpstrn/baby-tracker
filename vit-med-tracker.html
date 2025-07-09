@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vitamins Tracker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 320px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      margin: 4px 0;
+      color: #333;
+    }
+
+    .subtext {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .input-row input,
+    .input-row select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .quick-buttons {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .quick-buttons button {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ccc;
+      background: #f1f1f1;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .quick-buttons button:hover {
+      background: #e0e0e0;
+    }
+
+    .cta {
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .cta:hover {
+      background-color: #218838;
+    }
+
+    .view-logs {
+      display: block;
+      margin-top: 14px;
+      text-align: center;
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .view-logs:hover {
+      text-decoration: underline;
+    }
+
+    #logHistory {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .delete-all-btn {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 12px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+
+    .delete-all-btn:hover {
+      background: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>💊 Last vitamin:</h2>
+    <p id="lastLog-TikiTiki">— <span class="subtext" id="timeAgo-TikiTiki">(-)</span></p>
+    <p id="lastLog-Celine">— <span class="subtext" id="timeAgo-Celine">(-)</span></p>
+    <p id="lastLog-Other">No recent Others <span class="subtext" id="timeAgo-Other">(-)</span></p>
+    <!-- <p class="subtext" id="totalToday">🧮 Total today: 0 ml</p> -->
+
+    <h2>Vitamin to log:</h2>
+    <div class="input-row">
+      <input type="text" id="vitaminNameInput" placeholder="Vitamin name" />
+      <input type="number" id="amountInput" placeholder="Amount in ml" />
+    </div>
+
+    <div class="quick-buttons">
+      <button onclick="setVitamin('Celine')">Celine</button>
+      <button onclick="setVitamin('TikiTiki')">TikiTiki</button>
+    </div>
+    
+    <button class="cta" onclick="logVitamin()" id="logButton">Log 0 ml of vitamin 💾</button>
+
+    <a class="view-logs" onclick="toggleLogs()">📜 View logs</a>
+    <div id="logHistory" style="display: none;"></div>
+
+    <button onclick="location.href='home.html'">Homepage</button>
+  </div>
+
+  <script src="vit-med-tracker.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Milk Tracker Card</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <style>
+
+    /* .card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      margin: 4px 0;
+      color: #333;
+    }
+
+    .subtext {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .input-row input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .input-row select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .quick-buttons {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .quick-buttons button {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #ccc;
+      background: #f1f1f1;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .quick-buttons button:hover {
+      background: #e0e0e0;
+    }
+
+    .cta {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .cta:hover {
+      background-color: #45a049;
+    }
+
+    .view-logs {
+      display: block;
+      margin-top: 14px;
+      text-align: center;
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .view-logs:hover {
+      text-decoration: underline;
+    }
+
+    #logHistory {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .fade-out {
+  opacity: 1;
+  transition: opacity 0.4s ease-out;
+}
+
+.fade-out.hidden {
+  opacity: 0;
+} */
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="home" onclick="location.href='home.html'">Homepage</button>
+    <header>
+      <h1 class="name">Hello, I'm <span>Dillian!</span></h1>
+      <p class="date">Today is June 25, 2025</p>
+      <img class="profile" src="imgs/profile.png"></img>
+    </header>
+    <main class="milk">
+      <img class="milk-icon" src="imgs/milk.png"></img>
+      <p class="milk-tracker">Milk Tracker</p>
+      <div class="last-feed">
+        <p id="lastMilk"><b>Last feed:</b> I don't drink milk yet mommy! <span class="subtext" id="timeAgo"></span></p>
+        <p class="total subtext" id="totalToday"></p>
+      </div>
+      <h2 class="milk-title">Amount to log:</h2>
+      <div class="milk-input-container">
+        <input class="milk-input" type="number" id="amountInput" placeholder="150" />
+        <select class="milk-dropdown" id="unitSelect">
+          <option class="milk-dropdown-item" value="ml">ml</option>
+          <option class="milk-dropdown-item" value="oz">oz</option>
+        </select>
+      </div>
+      <div class="btn-container">
+        <div class="btn-preset">
+          <p>Quick Amount:</p>
+          <div class="quick-buttons">
+            <button class="btn-quick-amount" onclick="setAmount(60)">60</button>
+            <button class="btn-quick-amount" onclick="setAmount(90)">90</button>
+            <button class="btn-quick-amount" onclick="setAmount(120)">120</button>
+          </div>
+        </div>
+        <button class="btn-tracker btn-milk-tracker" onclick="logMilk()" id="logButton"></button>
+      </div>
+      <div class="logs">
+        <a class="view-logs" onclick="toggleLogs()">View logs</a>
+      <div id="logHistory" class="view-logs-history" style="display:none;"></div>
+    </main>
+  </div>
+
+<script src="milk-tracker.js"></script>
+</body>
+</html>
