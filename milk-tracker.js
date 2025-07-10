@@ -7,7 +7,7 @@ const lastMilk = document.getElementById('lastMilk');
 const timeAgo = document.getElementById('timeAgo');
 const totalToday = document.getElementById('totalToday');
 const logHistory = document.getElementById('logHistory');
-
+let editingIndex = null;
 let lastLogTime = null;
 
 if (logs.length > 0) {
@@ -102,7 +102,7 @@ function updateLogHistory() {
   if (!logHistory) return;
 
   if (logs.length === 0) {
-    logHistory.innerHTML = `<div style="color: #777; font-size: 14px;">No logs yet.</div>`;
+    logHistory.innerHTML = `<div style="color: #777; font-size: 12px;">No logs yet.</div>`;
     return;
   }
 
@@ -128,30 +128,40 @@ function updateLogHistory() {
       }
 
       const display = `${date} - <span class="logs-blue">${time}: <em>${displayAmount}</em> ${selectedUnit}</span>`;
-      logs[index].display = display; // for consistency
+
+      // Show/hide edit form and buttons based on editingIndex
+      const isEditing = editingIndex === index;
 
       return `
       <div id="log-${index}" class="milk-log" style="margin-bottom: 6px;">
-        <span id="log-display-${index}">${display}</span>
-        <div id="edit-form-${index}" style="display:none; margin-top: 4px;">
-          <input type="number" class="edit-input edit-input-amount" id="edit-amount-${index}" value="${
-        log.amount
-      }" style="width:60px; padding:2px; font-size: 13px;">
-          <select class="edit-input edit-input-unit" id="edit-unit-${index}" style="padding:2px; font-size: 13px;">
-            <option value="ml" ${
-              log.unit === 'ml' ? 'selected' : ''
-            }>ml</option>
-            <option value="oz" ${
-              log.unit === 'oz' ? 'selected' : ''
-            }>oz</option>
+        <span id="log-display-${index}" style="display:${isEditing ? 'none' : 'inline'};">${display}</span>
+        
+        <div id="edit-form-${index}" style="display:${isEditing ? 'block' : 'none'}; margin-top: 4px;">
+          <input type="number" class="edit-input edit-input-amount" id="edit-amount-${index}" value="${log.amount}">
+          <select class="edit-input edit-input-unit" id="edit-unit-${index}">
+            <option value="ml" ${log.unit === 'ml' ? 'selected' : ''}>ml</option>
+            <option value="oz" ${log.unit === 'oz' ? 'selected' : ''}>oz</option>
           </select>
-          <button class="logs-btn" onclick="saveEdit(${index})" style="font-size: 12px; margin-left: 4px;"><img class="logs-icon logs-icon-save" src="imgs/save.png" alt="Save Button"></button>
-          <button class="logs-btn" onclick="cancelEdit(${index})" style="font-size: 12px;"><img class="logs-icon logs-icon-cancel" src="imgs/cancel.png" alt="Cancel Button"></button>
         </div>
+
         <div class="logs-btn-box">
-          <button class="logs-btn" onclick="startEdit(${index})" style="margin-left: 8px; font-size: 12px;"><img class="logs-icon logs-icon-edit" src="imgs/edit.png" alt="Edit Button">
-          </button>
-          <button class="logs-btn" onclick="openDeleteModal(${index})" style="margin-left: 4px; font-size: 12px; color: red;"><img class="logs-icon logs-icon-delete" src="imgs/delete.png" alt="Delete Button"></button>
+          <div id="save-cancel-box-${index}" class="logs-save-cancel-box" style="display:${isEditing ? 'inline-block' : 'none'};">
+            <button class="logs-btn" onclick="saveEdit(${index})" style="font-size: 12px; margin-left: 4px;">
+              <img class="logs-icon logs-icon-save" src="imgs/save.png" alt="Save Button">
+            </button>
+            <button class="logs-btn" onclick="cancelEdit(${index})" style="font-size: 12px;">
+              <img class="logs-icon logs-icon-cancel" src="imgs/cancel.png" alt="Cancel Button">
+            </button>
+          </div>
+
+          <div id="edit-delete-box-${index}" class="logs-edit-delete-box" style="display:${isEditing ? 'none' : 'inline-block'};">
+            <button class="logs-btn" onclick="startEdit(${index})" style="margin-left: 8px; font-size: 12px;">
+              <img class="logs-icon logs-icon-edit" src="imgs/edit.png" alt="Edit Button">
+            </button>
+            <button class="logs-btn" onclick="openDeleteModal(${index})" style="margin-left: 4px; font-size: 12px; color: red;">
+              <img class="logs-icon logs-icon-delete" src="imgs/delete.png" alt="Delete Button">
+            </button>
+          </div>
         </div>
       </div>
     `;
@@ -160,11 +170,7 @@ function updateLogHistory() {
 
   // Add the Delete All button at the end
   logHistory.innerHTML += `
-    <div style="text-align: center; margin-top: 12px;">
-      <button class="logs-delete" onclick="openDeleteAllModal()" style="font-size: 13px; background: #dc3545; color: white; border: none; padding: 6px 10px; border-radius: 6px; cursor: pointer;">
-        🗑️ Delete All Logs
-      </button>
-    </div>
+    <button class="btn-tracker logs-delete" onclick="openDeleteAllModal()">Delete All</button>
   `;
 }
 
@@ -225,10 +231,10 @@ function openDeleteAllModal() {
   modal.style.alignItems = 'center';
   modal.style.justifyContent = 'center';
   modal.innerHTML = `
-    <div style="background:white; padding: 20px; border-radius: 10px; text-align:center;">
-      <p>Are you sure you want to delete <strong>all</strong> logs?</p>
-      <button onclick="confirmDeleteAll()" style="margin: 0 10px; padding: 6px 12px; background: red; color: white; border: none; border-radius: 6px;">Delete All</button>
-      <button onclick="closeDeleteAllModal()" style="margin: 0 10px; padding: 6px 12px; background: #ccc; border: none; border-radius: 6px;">Cancel</button>
+    <div class="logs-modal">
+      <p class="logs-modal-text">Are you sure you want to delete <strong>all</strong> logs?</p>
+      <button class="btn-modal btn-modal-delete" onclick="confirmDeleteAll()">Delete All</button>
+      <button class="btn-modal btn-modal-cancel" onclick="closeDeleteAllModal()">Cancel</button>
     </div>
   `;
   document.body.appendChild(modal);
@@ -269,10 +275,10 @@ function openDeleteModal(index) {
   modal.style.alignItems = 'center';
   modal.style.justifyContent = 'center';
   modal.innerHTML = `
-        <div style="background:white; padding: 20px; border-radius: 10px; text-align:center;">
+        <div class="logs-modal">
           <p>Are you sure you want to delete this log?</p>
-          <button onclick="confirmDelete(${index})" style="margin: 0 10px; padding: 6px 12px; background: red; color: white; border: none; border-radius: 6px;">Delete</button>
-          <button onclick="closeDeleteModal()" style="margin: 0 10px; padding: 6px 12px; background: #ccc; border: none; border-radius: 6px;">Cancel</button>
+          <button class="btn-modal btn-modal-delete" onclick="confirmDelete(${index})">Delete</button>
+          <button class="btn-modal btn-modal-cancel" onclick="closeDeleteModal()">Cancel</button>
         </div>
       `;
   document.body.appendChild(modal);
@@ -292,13 +298,13 @@ function confirmDelete(index) {
 }
 
 function startEdit(index) {
-  document.getElementById(`edit-form-${index}`).style.display = 'block';
-  document.getElementById(`log-display-${index}`).style.display = 'none';
+  editingIndex = index;
+  updateLogHistory();
 }
 
 function cancelEdit(index) {
-  document.getElementById(`edit-form-${index}`).style.display = 'none';
-  document.getElementById(`log-display-${index}`).style.display = 'inline';
+  editingIndex = null;
+  updateLogHistory();
 }
 
 function saveEdit(index) {
@@ -313,6 +319,7 @@ function saveEdit(index) {
   };
 
   localStorage.setItem('milkLogs', JSON.stringify(logs));
+  editingIndex = null;
   updateLogHistory();
   updateTotalToday();
 }
@@ -351,3 +358,12 @@ amountInput.addEventListener('input', updateButton);
 updateButton();
 updateTotalToday();
 setInterval(updateTimeAgo, 60000);
+
+// For PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').then(() => {
+      console.log('Service Worker Registered');
+    });
+  });
+}

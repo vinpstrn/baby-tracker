@@ -272,6 +272,10 @@ main .main-heading {
   height: 100%;
 }
 
+.logs-delete {
+  margin-top: 3rem;
+}
+
 .edit-input {
   font-family: inherit;
   font-size: inherit;
@@ -279,4 +283,35 @@ main .main-heading {
   border-bottom: .2rem solid #51aaf2;
   background: none;
   outline: none;
+}
+
+.logs-modal {
+  font-size: 1.4rem;
+  color: #333333;
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.btn-modal {
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 3rem;
+  width: 12.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.btn-modal-delete {
+  border: none;
+  background: #228ade;
+}
+
+.btn-modal-cancel {
+  background: none;
+  color: #228ade;
+  border: .3rem solid #228ade;
+  padding: .76rem 1rem;
 }
