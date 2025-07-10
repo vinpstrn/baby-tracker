@@ -126,8 +126,8 @@
 </head>
 <body>
   <div class="container">
-    <button class="home" onclick="location.href='index.html'">Homepage</button>
     <header>
+      <button class="home-btn" onclick="location.href='index.html'"><img class="home-icon" src="imgs/home.png"></img></button>
       <h1 class="name">Hello, I'm <span>Dillian!</span></h1>
       <p class="date">Today is June 25, 2025</p>
       <img class="profile" src="imgs/profile.png"></img>
@@ -151,9 +151,9 @@
         <div class="btn-preset">
           <p>Quick Amount:</p>
           <div class="quick-buttons">
+            <button class="btn-quick-amount" onclick="setAmount(30)">30</button>
             <button class="btn-quick-amount" onclick="setAmount(60)">60</button>
             <button class="btn-quick-amount" onclick="setAmount(90)">90</button>
-            <button class="btn-quick-amount" onclick="setAmount(120)">120</button>
           </div>
         </div>
         <button class="btn-tracker btn-milk-tracker" onclick="logMilk()" id="logButton"></button>

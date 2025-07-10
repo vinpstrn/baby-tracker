@@ -339,7 +339,7 @@ unitSelect.addEventListener('change', () => {
       }
     });
   } else {
-    const mlOptions = [60, 90, 120];
+    const mlOptions = [30, 60, 90];
     mlOptions.forEach((ml, index) => {
       if (buttons[index]) {
         buttons[index].textContent = `${ml} ml`;

@@ -31,19 +31,16 @@ body {
 }
 
 header {
-  background-image: url('./imgs/header-bg2.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top center;
-  width: 100%;
-  height: 100%;
-  max-height: 55.2rem;
-  color: #ffffff;
-  padding-top: 11.5rem;
-  padding-bottom: 15rem;
-}
-
-header::before {
+    background-image: url(./imgs/header-bg3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    width: 100%;
+    height: 100%;
+    height: 51rem;
+    padding-top: 10rem;
+    color: #ffffff;
+    position: relative;
 }
 
 header h1 {
@@ -96,6 +93,7 @@ main .main-heading {
   justify-content: center;
   text-align: center;
   width: 100%;
+  margin-top: -9rem;
 }
 
 .milk-tracker {
@@ -109,7 +107,7 @@ main .main-heading {
   align-self: flex-start;
   text-align: left;
   padding: 2rem 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #333333;
   border-bottom: 1px solid #c6e3fb;
   width: 100%;
@@ -132,12 +130,12 @@ main .main-heading {
 
 .milk-input {
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: #333333;
   width: inherit;
   padding: 1rem;
   border: 1px solid #ededed;
-  border-radius: 0.5rem 0 0 0.5rem;
+  border-radius: 0.8rem 0 0 0.5rem;
   height: 100%;
 }
 
@@ -152,7 +150,7 @@ main .main-heading {
 
 .milk-dropdown {
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   border: 1px solid #ededed;
   border-radius: 0 0.5rem 0.5rem 0;
   height: 100%;
@@ -167,7 +165,7 @@ main .main-heading {
 
 .milk-dropdown-item {
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   padding: 1rem;
 }
 
@@ -184,19 +182,19 @@ main .main-heading {
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
-  padding: 1rem 2.5rem 1rem 1rem;
+  padding: .8rem 2.5rem 1rem 1rem;
 }
 
 .btn-preset {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: .5rem;
   padding: 1.5rem 0;
 }
 
 .btn-preset p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 300;
   color: #2b2b2b;
 }
@@ -210,6 +208,7 @@ main .main-heading {
   border-radius: 6rem;
   color: #f2f2f2;
   font-family: inherit;
+  font-size: 1.4rem;
 }
 
 .btn-tracker {
@@ -220,13 +219,13 @@ main .main-heading {
   padding: 1.1rem 1.5rem;
   border-radius: 6rem;
   color: #f2f2f2;
-  width: 20rem;
+  width: 23.8rem;
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .view-logs {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #2b2b2b;
   text-decoration: underline;
   cursor: pointer;
@@ -239,7 +238,7 @@ main .main-heading {
 
 .milk-log {
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   border-bottom: 1px solid #ededed;
   color: #333333;
 
@@ -263,13 +262,11 @@ main .main-heading {
   background: none;
   outline: none;
   border: none;
-    width: 1.4rem;
-  height: 1.4rem;
 }
 
 .logs-icon {
-  width: 100%;
-  height: 100%;
+  width: 2.25rem;
+  height: 2.25rem;
 }
 
 .logs-delete {
@@ -314,4 +311,19 @@ main .main-heading {
   color: #228ade;
   border: .3rem solid #228ade;
   padding: .76rem 1rem;
+}
+
+.home-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 7.5rem;
+  left: 5rem;
+  transform: translate(-50%, -50%);
+}
+
+.home-icon {
+  width: 2.6rem;
+  height: 2.6rem;
 }
