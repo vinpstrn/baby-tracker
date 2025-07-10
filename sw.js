@@ -2,11 +2,15 @@ self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open('baby-tracker-cache').then((cache) => {
       return cache.addAll([
-        '/milk-tracker.html',
-        '/style.css',
-        '/milk-tracker.js',
-        '/imgs/icon-192.png',
-        '/imgs/icon-512.png',
+        '/baby-tracker/index.html',
+        '/baby-tracker/milk-tracker.html',
+        '/baby-tracker/vit-med-tracker.html',
+        '/baby-tracker/style.css',
+        '/baby-tracker/milk-tracker.js',
+        '/baby-tracker/vit-med-tracker.js',
+        '/baby-tracker/manifest.json',
+        '/baby-tracker/imgs/icon-192.png',
+        '/baby-tracker/imgs/icon-512.png',
       ]);
     })
   );

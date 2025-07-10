@@ -1,7 +1,7 @@
 {
   "name": "My Baby Tracker",
   "short_name": "BabyTracker",
-  "start_url": "milk-tracker.html",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#228ade",

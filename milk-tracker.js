@@ -362,8 +362,8 @@ setInterval(updateTimeAgo, 60000);
 // For PWA
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js').then(() => {
-      console.log('Service Worker Registered');
+    navigator.serviceWorker.register('/baby-tracker/sw.js').then(() => {
+      console.log('Service Worker registered!');
     });
   });
 }

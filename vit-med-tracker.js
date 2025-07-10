@@ -356,3 +356,11 @@ function cancelDeleteLog(index) {
   const modal = document.getElementById(`delete-log-modal-${index}`);
   if (modal) document.body.removeChild(modal);
 }
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/baby-tracker/sw.js').then(() => {
+      console.log('Service Worker registered!');
+    });
+  });
+}
