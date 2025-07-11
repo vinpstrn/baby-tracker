@@ -295,6 +295,15 @@ main .main-heading {
   border-bottom: .2rem solid #51aaf2;
   background: none;
   outline: none;
+  border-radius: 0px;
+}
+
+.edit-input-amount {
+  width: 7.5rem;
+}
+
+.edit-input-unit {
+  width: 5rem;
 }
 
 .logs-modal {
