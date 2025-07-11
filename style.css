@@ -16,11 +16,12 @@ body {
   font-size: 1.6rem;
   color: #333333;
   background: #f2f2f2;
+
 }
 
 .container {
   background: white;
-  max-width: 430px;
+  max-width: 43rem;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -28,19 +29,20 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 header {
-    background-image: url(./imgs/header-bg3.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top center;
-    width: 100%;
-    height: 100%;
-    height: 51rem;
-    padding-top: 10rem;
-    color: #ffffff;
-    position: relative;
+  background-image: url(./imgs/header-bg3.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  width: 100%;
+  height: 65.26vh;
+  padding-top: 8rem;
+  color: #ffffff;
+  position: relative;
 }
 
 header h1 {
@@ -57,7 +59,7 @@ header p {
 }
 
 main {
-  padding: 0 2.5rem 7rem 2.5rem;
+  padding: 0 2.5rem 2.5rem 2.5rem;
   margin-top: -7rem;
 }
 
@@ -85,6 +87,10 @@ main .main-heading {
   padding-bottom: 1rem;
 }
 
+#date {
+  color: #ededed;
+}
+
 /* MILK TRACKER */
 .milk {
   display: flex;
@@ -93,7 +99,7 @@ main .main-heading {
   justify-content: center;
   text-align: center;
   width: 100%;
-  margin-top: -9rem;
+  /* margin-top: -9rem; */
 }
 
 .milk-tracker {
@@ -262,6 +268,9 @@ main .main-heading {
   background: none;
   outline: none;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logs-icon {
@@ -273,9 +282,15 @@ main .main-heading {
   margin-top: 3rem;
 }
 
+.logs-save-cancel-box {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .edit-input {
   font-family: inherit;
-  font-size: inherit;
+  font-size: 1.6rem;
   border: none;
   border-bottom: .2rem solid #51aaf2;
   background: none;
@@ -318,7 +333,7 @@ main .main-heading {
   border: none;
   cursor: pointer;
   position: absolute;
-  top: 7.5rem;
+  top: 5rem;
   left: 5rem;
   transform: translate(-50%, -50%);
 }

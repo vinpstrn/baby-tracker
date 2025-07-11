@@ -19,7 +19,7 @@
   <div class="container">
     <header>
       <h1 class="name">Hello, I'm <span>Dillian!</span></h1>
-      <p class="date">Today is June 25, 2025</p>
+      <p id="date"></p>
       <img class="profile" src="imgs/profile.png"></img>
     </header>
     <main class="btns">
@@ -34,5 +34,16 @@
       </div>
     </main>
   </div>
+<script>
+  function displayTodayDate() {
+  const dateElement = document.getElementById('date');
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today = new Date().toLocaleDateString('en-US', options);
+  dateElement.textContent = `Today is ${today}`;
+  }
+
+  // Call the function on page load
+  displayTodayDate();
+</script>
 </body>
 </html>

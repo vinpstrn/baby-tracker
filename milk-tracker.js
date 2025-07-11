@@ -10,6 +10,17 @@ const logHistory = document.getElementById('logHistory');
 let editingIndex = null;
 let lastLogTime = null;
 
+function displayTodayDate() {
+  const dateElement = document.getElementById('date');
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today = new Date().toLocaleDateString('en-US', options);
+  dateElement.textContent = `Today is ${today}`;
+}
+
+// Call the function on page load
+displayTodayDate();
+
+
 if (logs.length > 0) {
   const [lastLog] = logs;
   const { amount, unit, timestamp } = lastLog;
@@ -133,10 +144,10 @@ function updateLogHistory() {
       const isEditing = editingIndex === index;
 
       return `
-      <div id="log-${index}" class="milk-log" style="margin-bottom: 6px;">
+      <div id="log-${index}" class="milk-log">
         <span id="log-display-${index}" style="display:${isEditing ? 'none' : 'inline'};">${display}</span>
         
-        <div id="edit-form-${index}" style="display:${isEditing ? 'block' : 'none'}; margin-top: 4px;">
+        <div id="edit-form-${index}" style="display:${isEditing ? 'block' : 'none'};">
           <input type="number" class="edit-input edit-input-amount" id="edit-amount-${index}" value="${log.amount}">
           <select class="edit-input edit-input-unit" id="edit-unit-${index}">
             <option value="ml" ${log.unit === 'ml' ? 'selected' : ''}>ml</option>
@@ -145,7 +156,7 @@ function updateLogHistory() {
         </div>
 
         <div class="logs-btn-box">
-          <div id="save-cancel-box-${index}" class="logs-save-cancel-box" style="display:${isEditing ? 'inline-block' : 'none'};">
+          <div id="save-cancel-box-${index}" class="logs-save-cancel-box" style="display:${isEditing ? 'flex' : 'none'};">
             <button class="logs-btn" onclick="saveEdit(${index})" style="font-size: 12px; margin-left: 4px;">
               <img class="logs-icon logs-icon-save" src="imgs/save.png" alt="Save Button">
             </button>
@@ -154,7 +165,7 @@ function updateLogHistory() {
             </button>
           </div>
 
-          <div id="edit-delete-box-${index}" class="logs-edit-delete-box" style="display:${isEditing ? 'none' : 'inline-block'};">
+          <div id="edit-delete-box-${index}" class="logs-edit-delete-box" style="display:${isEditing ? 'none' : 'flex'};">
             <button class="logs-btn" onclick="startEdit(${index})" style="margin-left: 8px; font-size: 12px;">
               <img class="logs-icon logs-icon-edit" src="imgs/edit.png" alt="Edit Button">
             </button>
