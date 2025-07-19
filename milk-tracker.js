@@ -42,17 +42,40 @@ function setAmount(value, unit = unitSelect.value) {
 }
 
 function updateButton() {
-  const amount = amountInput.value || 0;
+  const input = amountInput.value;
   const unit = unitSelect.value;
-  logButton.textContent = `Log ${amount} ${unit} of milk`;
+  const evaluated = evaluateExpression(input);
+
+  if (evaluated !== null) {
+    logButton.textContent = `Log ${evaluated} ${unit} of milk`;
+  } else {
+    logButton.textContent = `Log ${unit} of milk`;
+  }
+}
+
+function evaluateExpression(expr) {
+  try {
+    const sanitized = expr.replace(/[^-()\d/*+.]/g, '');
+    const result = Function('"use strict"; return (' + sanitized + ')')();
+    return isNaN(result) ? null : Math.round(result * 100) / 100; // round to 2 decimals
+  } catch (e) {
+    return null;
+  }
 }
 
 function logMilk() {
-  const amount = parseInt(amountInput.value);
+  
+  const amount = evaluateExpression(amountInput.value);
   const unit = unitSelect.value;
 
   const errorId = 'amount-error';
   let existingError = document.getElementById(errorId);
+
+    if (amount === null) {
+    // Show error like "Invalid expression"
+    return;
+  }
+
   if (!amount) {
     if (!existingError) {
       const errorEl = document.createElement('div');
@@ -148,7 +171,7 @@ function updateLogHistory() {
         <span id="log-display-${index}" style="display:${isEditing ? 'none' : 'inline'};">${display}</span>
         
         <div id="edit-form-${index}" style="display:${isEditing ? 'block' : 'none'};">
-          <input type="number" class="edit-input edit-input-amount" id="edit-amount-${index}" value="${log.amount}">
+          <input type="text" class="edit-input edit-input-amount" id="edit-amount-${index}" value="${log.amount}">
           <select class="edit-input edit-input-unit" id="edit-unit-${index}">
             <option value="ml" ${log.unit === 'ml' ? 'selected' : ''}>ml</option>
             <option value="oz" ${log.unit === 'oz' ? 'selected' : ''}>oz</option>
@@ -324,10 +347,16 @@ function saveEdit(index) {
   const newTime = new Date();
 
   logs[index] = {
-    amount: parseInt(newAmount),
+    amount: evaluateExpression(newAmount),
     unit: newUnit,
     timestamp: newTime.toISOString(),
   };
+
+  if (amount === null) {
+  // Show error like "Invalid expression"
+  return;
+}
+
 
   localStorage.setItem('milkLogs', JSON.stringify(logs));
   editingIndex = null;

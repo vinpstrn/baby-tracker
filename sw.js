@@ -1,4 +1,4 @@
-const CACHE_NAME = 'baby-tracker-cache-v2'; // 🔔 Change this when you update your files
+const CACHE_NAME = 'baby-tracker-cache-v3'; // 🔔 Change this when you update your files
 
 const ASSETS_TO_CACHE = [
   '/baby-tracker/index.html',
